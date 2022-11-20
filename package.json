@@ -1,0 +1,39 @@
+{
+  "name": "gitlink",
+  "version": "1.0.0",
+  "main": "build/src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "build": "tsc && tsc-alias -s",
+    "fmt": "gts fix",
+    "dev": "nodemon"
+  },
+  "devDependencies": {
+    "@octokit/types": "^8.0.0",
+    "@trivago/prettier-plugin-sort-imports": "^3.4.0",
+    "@types/node": "^18.11.9",
+    "gts": "^3.1.1",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.7.1",
+    "prisma": "^4.6.1",
+    "ts-node": "^10.9.1",
+    "tsc-alias": "^1.7.1",
+    "tsconfig-paths": "^4.1.0",
+    "typescript": "~4.7.0"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^8.3.0",
+    "@octokit/rest": "^19.0.5",
+    "@prisma/client": "^4.6.1",
+    "discord-api-types": "^0.37.17",
+    "dotenv": "^16.0.3",
+    "fastify": "^4.9.2",
+    "ioredis": "^5.2.4",
+    "undici": "^5.12.0"
+  },
+  "engines": {
+    "node": ">=18.12.2"
+  }
+}

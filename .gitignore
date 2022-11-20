@@ -1,0 +1,8 @@
+/.env
+
+/build
+/data
+/node_modules
+
+*.vim
+*.log
