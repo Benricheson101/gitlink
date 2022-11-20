@@ -5,6 +5,8 @@ import {Redis} from 'ioredis';
 export const generateSessionID = () =>
   crypto.randomBytes(16).toString('base64url');
 
+// TODO: expire sessions?
+
 export class SessionStore {
   constructor(private client: Redis) {}
 
@@ -29,11 +31,7 @@ export class SessionStore {
   }
 
   async set(id: string, data: SessionData) {
-    const res = await this.client.setex(
-      this.#prefix(id),
-      data.expiresAt - Date.now(),
-      JSON.stringify(data)
-    );
+    const res = await this.client.set(this.#prefix(id), JSON.stringify(data));
 
     return res === 'OK';
   }
