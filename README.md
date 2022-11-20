@@ -3,10 +3,10 @@
 # TODO:
 
 - Connections/Verified Roles:
-  - [*] stars given
-  - [*] stars received
-  - [*] account age
-  - [*] owned repos
+  - [x] stars given
+  - [x] stars received
+  - [x] account age
+  - [x] owned repos
   - [ ] contributions made
 
 - Commands & Other Stuff:
