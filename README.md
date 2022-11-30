@@ -1,19 +1,13 @@
 <h1 align="center">GitLink 🔗</h1>
 
-# TODO:
+Simple Verified Roles for GitHub!
 
-- Connections/Verified Roles:
-  - [x] stars given
-  - [x] stars received
-  - [x] account age
-  - [x] owned repos
-  - [ ] contributions made
+![GitLink profile](doc/img/GitLink-Profile-View.png)
 
-- Commands & Other Stuff:
-  - [ ] user sponsoring specific user
-  - [ ] user following specific user
-  - [ ] user member of specific org
-  - [ ] user contributor of specific repo
-  - [ ] user collaborator of specific repo
-  - [ ] info about linked user
+# Usage
 
+1. [invite the bot](https://gitlink.dev/invite)
+2. create a role requiring GitLink verification
+  ![create GitLink role](doc/img/GitLink-Role-Settings.png)
+3. to add a verified role, click the server icon > Verified Roles, and choose the one you would like to add
+  ![add GitLink role](doc/img/GitLink-Verified-Roles-Add.png)
