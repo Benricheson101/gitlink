@@ -5,7 +5,7 @@ Simple Verified Roles for GitHub!
 ![GitLink profile](doc/img/GitLink-Profile-View.png)
 
 # Usage
-1. [invite the bot](https://gitlink.dev/invite)
+1. [Invite the bot](https://gitlink.dev/invite)
 2. Create a role requiring GitLink verification
   ![create GitLink role](doc/img/GitLink-Role-Settings.png)
 3. To add a verified role, click the server name > Verified Roles, and choose the one you would like to add
