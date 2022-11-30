@@ -60,7 +60,18 @@ export const loadInteractionRoutes = (
                     data: {
                       flags: MessageFlags.Ephemeral,
                       content:
-                        'To update your stats, re-authorize your Discord account by visiting: https://gitlink.dev/login',
+                        ':arrows_clockwise: To update your stats, re-authorize your Discord account by visiting: <https://gitlink.dev/login>',
+                    },
+                  } as APIInteractionResponse);
+                }
+
+                case 'support': {
+                  return reply.status(200).send({
+                    type: InteractionResponseType.ChannelMessageWithSource,
+                    data: {
+                      flags: MessageFlags.Ephemeral,
+                      content:
+                        ':question: Need help with the bot? Hit us up in our support server: https://discord.gg/ABwYM9y6Sm',
                     },
                   } as APIInteractionResponse);
                 }
