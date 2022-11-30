@@ -3,10 +3,6 @@ name: 'Publish Docker image'
 on:
   push:
     branches: ['main']
-    paths:
-      - '**/*.ts'
-      - '**/*.json'
-      - '**/*.yaml'
 
 jobs:
   push_to_registries:
@@ -23,15 +19,15 @@ jobs:
       - name: 'Log in to Docker Hub'
         uses: 'docker/login-action@v1'
         with:
-          username: '${{ secrets.DOCKER_USERNAME }}'
-          password: '${{ secrets.DOCKER_PASSWORD }}'
+          username: '${{secrets.DOCKER_USERNAME}}'
+          password: '${{secrets.DOCKER_PASSWORD}}'
 
       - name: 'Log in to the Container registry'
         uses: 'docker/login-action@v1'
         with:
           registry: 'ghcr.io'
-          username: '${{ github.actor }}'
-          password: '${{ secrets.GITHUB_TOKEN }}'
+          username: '${{github.actor}}'
+          password: '${{secrets.GITHUB_TOKEN}}'
 
       - name: 'Extract metadata (tags, labels) for Docker'
         id: 'meta'
@@ -48,5 +44,5 @@ jobs:
           context: '.'
           file: 'Dockerfile'
           push: true
-          tags: '${{ steps.meta.outputs.tags }}'
-          labels: '${{ steps.meta.outputs.labels }}'
+          tags: '${{steps.meta.outputs.tags}}'
+          labels: '${{steps.meta.outputs.labels}}'
