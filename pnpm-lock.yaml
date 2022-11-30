@@ -4,7 +4,6 @@ specifiers:
   '@fastify/cookie': ^8.3.0
   '@octokit/rest': ^19.0.5
   '@octokit/types': ^8.0.0
-  '@prisma/client': ^4.6.1
   '@trivago/prettier-plugin-sort-imports': ^3.4.0
   '@types/node': ^18.11.9
   discord-api-types: ^0.37.17
@@ -15,7 +14,6 @@ specifiers:
   ioredis: ^5.2.4
   nodemon: ^2.0.20
   prettier: ^2.7.1
-  prisma: ^4.6.1
   ts-node: ^10.9.1
   tsc-alias: ^1.7.1
   tsconfig-paths: ^4.1.0
@@ -25,7 +23,6 @@ specifiers:
 dependencies:
   '@fastify/cookie': 8.3.0
   '@octokit/rest': 19.0.5
-  '@prisma/client': 4.6.1_prisma@4.6.1
   discord-api-types: 0.37.17
   discord-verify: 1.0.0
   dotenv: 16.0.3
@@ -40,7 +37,6 @@ devDependencies:
   gts: 3.1.1_typescript@4.7.4
   nodemon: 2.0.20
   prettier: 2.7.1
-  prisma: 4.6.1
   ts-node: 10.9.1_vq46kxj6zfka4f6ijsosnft3hy
   tsc-alias: 1.7.1
   tsconfig-paths: 4.1.0
@@ -549,28 +545,6 @@ packages:
     resolution: {integrity: sha512-65/TPpOJP1i3K4lBJMnWqPUJ6zuOtzhtagDvydAWbEXpbFYA0oMKKyLb95NFZZP0lSh/4b6K+DQlzvYQJQQePg==}
     dependencies:
       '@octokit/openapi-types': 14.0.0
-
-  /@prisma/client/4.6.1_prisma@4.6.1:
-    resolution: {integrity: sha512-M1+NNrMzqaOIxT7PBGcTs3IZo7d1EW/+gVQd4C4gUgWBDGgD9AcIeZnUSidgWClmpMSgVUdnVORjsWWGUameYA==}
-    engines: {node: '>=14.17'}
-    requiresBuild: true
-    peerDependencies:
-      prisma: '*'
-    peerDependenciesMeta:
-      prisma:
-        optional: true
-    dependencies:
-      '@prisma/engines-version': 4.6.1-3.694eea289a8462c80264df36757e4fdc129b1b32
-      prisma: 4.6.1
-    dev: false
-
-  /@prisma/engines-version/4.6.1-3.694eea289a8462c80264df36757e4fdc129b1b32:
-    resolution: {integrity: sha512-HUCmkXAU2jqp2O1RvNtbE+seLGLyJGEABZS/R38rZjSAafAy0WzBuHq+tbZMnD+b5OSCsTVtIPVcuvx1ySxcWQ==}
-    dev: false
-
-  /@prisma/engines/4.6.1:
-    resolution: {integrity: sha512-3u2/XxvxB+Q7cMXHnKU0CpBiUK1QWqpgiBv28YDo1zOIJE3FCF8DI2vrp6vuwjGt5h0JGXDSvmSf4D4maVjJdw==}
-    requiresBuild: true
 
   /@trivago/prettier-plugin-sort-imports/3.4.0_prettier@2.7.1:
     resolution: {integrity: sha512-485Iailw8X5f7KetzRka20RF1kPBEINR5LJMNwlBZWY1gRAlVnv5dZzyNPnLxSP0Qcia8HETa9Cdd8LlX9o+pg==}
@@ -2333,14 +2307,6 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
-
-  /prisma/4.6.1:
-    resolution: {integrity: sha512-BR4itMCuzrDV4tn3e2TF+nh1zIX/RVU0isKtKoN28ADeoJ9nYaMhiuRRkFd2TZN8+l/XfYzoRKyHzUFXLQhmBQ==}
-    engines: {node: '>=14.17'}
-    hasBin: true
-    requiresBuild: true
-    dependencies:
-      '@prisma/engines': 4.6.1
 
   /process-warning/2.0.0:
     resolution: {integrity: sha512-+MmoAXoUX+VTHAlwns0h+kFUWFs/3FZy+ZuchkgjyOu3oioLAo2LB5aCfKPh2+P9O18i3m43tUEv3YqttSy0Ww==}
