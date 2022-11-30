@@ -1,4 +1,5 @@
 import cookie from '@fastify/cookie';
+import {PrismaClient} from '@prisma/client';
 import 'dotenv/config';
 import {fastify} from 'fastify';
 import Redis from 'ioredis';
@@ -20,6 +21,8 @@ const main = async () => {
     host: process.env.REDIS_HOST,
   });
   const sessionStore = new SessionStore(redis);
+
+  // const prisma = new PrismaClient({});
 
   await server.register(loadRedirectRoutes);
   await server.register(loadAuthRoutes, {prefix: '/auth'});

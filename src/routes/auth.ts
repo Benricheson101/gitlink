@@ -63,7 +63,7 @@ export const loadAuthRoutes = (
   server.get<{Querystring: {code: string; state: string}}>(
     '/github/callback',
     {
-      preHandler: [requireAuth],
+      preHandler: [requireAuth(true)],
       schema: {
         querystring: {
           type: 'object',
