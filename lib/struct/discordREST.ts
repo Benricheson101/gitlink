@@ -1,6 +1,6 @@
 import {
-  APIUser as DiscordUser,
   ApplicationUserRoleConnection,
+  APIUser as DiscordUser,
 } from 'discord-api-types/v10';
 import {fetch} from 'undici';
 

@@ -2,9 +2,9 @@ import {FastifyInstance, FastifyPluginOptions} from 'fastify';
 
 import {
   DiscordRESTClient,
+  RESTError,
   errorResponse,
   requireAuth,
-  RESTError,
   successResponse,
 } from 'gitlink';
 

@@ -1,13 +1,13 @@
+import {webcrypto} from 'crypto';
 import {
   APIInteraction,
   APIInteractionResponse,
   InteractionResponseType,
   InteractionType,
 } from 'discord-api-types/v10';
+import {PlatformAlgorithm, verify} from 'discord-verify/node';
 import {FastifyReply} from 'fastify';
 import {FastifyRequest} from 'fastify';
-import {PlatformAlgorithm, verify} from 'discord-verify/node';
-import {webcrypto} from 'crypto';
 
 export const verifyInteraction = async (
   req: FastifyRequest<{

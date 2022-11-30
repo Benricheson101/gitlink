@@ -28,8 +28,6 @@ export class SessionStore {
       .expire(this.#prefix(id), TTL)
       .exec();
 
-    console.log(session);
-
     if (
       !session ||
       !session[0] ||
