@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 import cookie from '@fastify/cookie';
 import {fastify} from 'fastify';
 import Redis from 'ioredis';
@@ -15,7 +17,9 @@ const main = async () => {
   });
   await server.register(cookie);
 
-  const redis = new Redis();
+  const redis = new Redis({
+    host: process.env.REDIS_HOST,
+  });
   const sessionStore = new SessionStore(redis);
 
   await server.register(loadAuthRoutes, {prefix: '/auth'});

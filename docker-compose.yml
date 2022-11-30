@@ -1,0 +1,18 @@
+services:
+  bot:
+    build: '.'
+    depends_on:
+      - 'redis'
+    ports:
+      - '3000:3000'
+    restart: 'on-failure'
+    env_file: 'stack.env'
+
+  redis:
+    image: 'redis'
+    restart: 'always'
+    volumes:
+      - 'redis_data:/data'
+
+volumes:
+  redis_data:

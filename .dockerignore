@@ -1,0 +1,7 @@
+*
+
+!/src
+!/lib
+!/package.json
+!/pnpm-lock.yaml
+!/tsconfig.json

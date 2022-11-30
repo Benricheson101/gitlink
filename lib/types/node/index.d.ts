@@ -11,6 +11,8 @@ declare global {
       DISCORD_CLIENT_SECRET: string;
       DISCORD_REDIRECT_URI: string;
       DISCORD_PUBLIC_KEY: string;
+
+      REDIS_HOST: string;
     }
   }
 }
