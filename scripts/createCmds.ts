@@ -11,6 +11,10 @@ const cmds: RESTPutAPIApplicationCommandsJSONBody = [
     name: 'refresh',
     description: 'Refresh your GitHub statistics',
   },
+  {
+    name: 'support',
+    description: 'Get a link to join the support server',
+  },
 ];
 
 const main = async () => {
