@@ -1,15 +1,14 @@
-import 'dotenv/config';
-
 import cookie from '@fastify/cookie';
+import 'dotenv/config';
 import {fastify} from 'fastify';
 import Redis from 'ioredis';
 
-import {getDiscordAuthURL, SessionStore} from 'gitlink';
+import {SessionStore} from 'gitlink';
 
 import {loadAuthRoutes} from './routes/auth';
 import {loadInteractionRoutes} from './routes/interaction';
+import {loadRedirectRoutes} from './routes/redirects';
 import {loadUserRoutes} from './routes/user';
-import {DISCORD_SCOPES} from 'gitlink/constants';
 
 const main = async () => {
   const server = fastify({
@@ -22,29 +21,10 @@ const main = async () => {
   });
   const sessionStore = new SessionStore(redis);
 
+  await server.register(loadRedirectRoutes);
   await server.register(loadAuthRoutes, {prefix: '/auth'});
   await server.register(loadInteractionRoutes);
   await server.register(loadUserRoutes);
-
-  server.get('/', (_, reply) =>
-    reply.redirect(302, 'https://github.com/benricheson101/GitLink')
-  );
-
-  server.get('/invite', (_, reply) =>
-    reply.redirect(
-      302,
-      `https://discord.com/api/oauth2/authorize?client_id=${process.env.DISCORD_CLIENT_ID}&permissions=268435456&scope=bot%20applications.commands`
-    )
-  );
-
-  server.get('/login', (_, reply) =>
-    reply.redirect(
-      302,
-      getDiscordAuthURL({
-        scopes: DISCORD_SCOPES,
-      })
-    )
-  );
 
   server.decorate('sessions', sessionStore);
   server.decorateRequest('sessionID', null);
