@@ -1,5 +1,3 @@
-import {PrismaClient} from '@prisma/client';
-
 import {SessionData, SessionStore} from '../../struct/session';
 
 declare module 'fastify' {
@@ -9,10 +7,6 @@ declare module 'fastify' {
      * auth session storage
      */
     sessions: SessionStore;
-    /**
-     * connected prisma client
-     */
-    prisma: PrismaClient;
   }
 
   export interface FastifyRequest {
