@@ -1,7 +1,9 @@
-import {ApplicationRoleConnectionMetadata} from 'discord-api-types/v10';
-import {ApplicationRoleConnectionMetadataType} from 'gitlink/constants';
+import 'dotenv/config';
 
+import {ApplicationRoleConnectionMetadata} from 'discord-api-types/v10';
 import {fetch} from 'undici';
+
+import {ApplicationRoleConnectionMetadataType} from 'gitlink/constants';
 
 const main = async () => {
   const metadata: ApplicationRoleConnectionMetadata = [
@@ -30,25 +32,6 @@ const main = async () => {
         'The minimum number of total stars the user must have recieved on all of their repos',
       type: ApplicationRoleConnectionMetadataType.NumberGreaterThan,
     },
-    // {
-    //   key: 'is_verified',
-    //   name: 'GitLink Verified',
-    //   description:
-    //     'The user must have linked their GitHub account with GitLink',
-    //   type: ApplicationRoleConnectionMetadataType.BooleanEqual,
-    // },
-    // {
-    //   key: 'hireable',
-    //   name: 'Hireable',
-    //   description: 'The user\'s profile must be marked as "Available for Hire"',
-    //   type: ApplicationRoleConnectionMetadataType.BooleanEqual,
-    // },
-    // {
-    //   key: 'followers',
-    //   name: 'Followers',
-    //   description: 'The minimum number of followers the user must have',
-    //   type: ApplicationRoleConnectionMetadataType.NumberGreaterThan,
-    // },
   ];
 
   const created = await fetch(

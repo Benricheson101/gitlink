@@ -5,6 +5,7 @@ import Redis from 'ioredis';
 import {getDiscordAuthURL, SessionStore} from 'gitlink';
 
 import {loadAuthRoutes} from './routes/auth';
+import {loadInteractionRoutes} from './routes/interaction';
 import {loadUserRoutes} from './routes/user';
 import {DISCORD_SCOPES} from 'gitlink/constants';
 
@@ -18,7 +19,12 @@ const main = async () => {
   const sessionStore = new SessionStore(redis);
 
   await server.register(loadAuthRoutes, {prefix: '/auth'});
+  await server.register(loadInteractionRoutes);
   await server.register(loadUserRoutes);
+
+  server.get('/', (_, reply) =>
+    reply.redirect(302, 'https://github.com/benricheson101/GitLink')
+  );
 
   server.get('/login', (_, reply) =>
     reply.redirect(

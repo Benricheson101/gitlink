@@ -120,7 +120,9 @@ export const loadAuthRoutes = (
 
         try {
           await dClient.updateUserMedatada(metadata, ghUser.login);
-          return reply.redirect(302, '/success');
+
+          // TODO: make own page?
+          return reply.redirect(302, 'https://discord.com/oauth2/authorized');
         } catch (err) {
           return err;
         }

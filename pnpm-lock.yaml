@@ -8,6 +8,7 @@ specifiers:
   '@trivago/prettier-plugin-sort-imports': ^3.4.0
   '@types/node': ^18.11.9
   discord-api-types: ^0.37.17
+  discord-verify: ^1.0.0
   dotenv: ^16.0.3
   fastify: ^4.9.2
   gts: ^3.1.1
@@ -26,6 +27,7 @@ dependencies:
   '@octokit/rest': 19.0.5
   '@prisma/client': 4.6.1_prisma@4.6.1
   discord-api-types: 0.37.17
+  discord-verify: 1.0.0
   dotenv: 16.0.3
   fastify: 4.9.2
   ioredis: 5.2.4
@@ -1174,6 +1176,11 @@ packages:
 
   /discord-api-types/0.37.17:
     resolution: {integrity: sha512-5ZIw1VtkmToBy8ziketjHkZnW1FoLevyXdK/TslNFLozijug2RnB3MyBNtSGzML1c72koU3neeGkvFZ8OiU0tQ==}
+    dev: false
+
+  /discord-verify/1.0.0:
+    resolution: {integrity: sha512-3oylOAVOArmCXedhLPmGCdh0qyQ8E8gnh2aokIl1Qg2b81C+xewyZegay9EOniWjuGXe3jMrvaMrKv398u4QFg==}
+    engines: {node: '>=16'}
     dev: false
 
   /doctrine/3.0.0:

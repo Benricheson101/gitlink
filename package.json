@@ -28,6 +28,7 @@
     "@octokit/rest": "^19.0.5",
     "@prisma/client": "^4.6.1",
     "discord-api-types": "^0.37.17",
+    "discord-verify": "^1.0.0",
     "dotenv": "^16.0.3",
     "fastify": "^4.9.2",
     "ioredis": "^5.2.4",
