@@ -1,6 +1,5 @@
-import 'dotenv/config';
-
 import {RESTPutAPIApplicationCommandsJSONBody} from 'discord-api-types/v10';
+import 'dotenv/config';
 import {fetch} from 'undici';
 
 const cmds: RESTPutAPIApplicationCommandsJSONBody = [

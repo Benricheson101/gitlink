@@ -1,21 +1,56 @@
 import {FastifyReply, FastifyRequest} from 'fastify';
-import {errorResponse} from 'lib/util';
 
-export const requireAuth = async (req: FastifyRequest, reply: FastifyReply) => {
-  const sessions = req.server.sessions;
+import {DISCORD_SCOPES} from '../constants';
+import {DiscordRESTClient, RESTError} from '../struct';
+import {errorResponse, getDiscordAuthURL} from '../util';
 
-  const sessionID = req.cookies.sessionID;
-  if (!sessionID) {
-    return reply.status(401).send(errorResponse('unauthorized'));
-  }
+export const requireAuth =
+  (redirToLogin = false) =>
+  async (req: FastifyRequest, reply: FastifyReply) => {
+    const sessions = req.server.sessions;
+    const loginURL = getDiscordAuthURL({scopes: DISCORD_SCOPES});
 
-  const session = await sessions.get(sessionID);
-  if (!session) {
-    return reply.status(401).send(errorResponse('unauthorized'));
-  }
+    const sessionID = req.cookies.sessionID;
+    if (!sessionID) {
+      if (redirToLogin) {
+        return reply.redirect(302, loginURL);
+      }
 
-  req.sessionID = sessionID;
-  req.session = session;
+      return reply.status(401).send(errorResponse('unauthorized'));
+    }
 
-  return;
-};
+    const session = await sessions.get(sessionID);
+    if (!session) {
+      if (redirToLogin) {
+        return reply.redirect(302, loginURL);
+      }
+      return reply.status(401).send(errorResponse('unauthorized'));
+    }
+
+    if (session.expiresAt <= Date.now()) {
+      const dClient = new DiscordRESTClient(session);
+
+      try {
+        await dClient.refresh();
+        await sessions.set(sessionID, dClient.toSessionData());
+      } catch (e) {
+        if (e instanceof RESTError) {
+          console.error('Failed to refresh session token:', e);
+          await sessions.delete(sessionID);
+
+          if (redirToLogin) {
+            return reply.redirect(302, loginURL);
+          }
+
+          return reply.status(401).send('unauthorized');
+        }
+
+        return reply.status(500).send();
+      }
+    }
+
+    req.sessionID = sessionID;
+    req.session = session;
+
+    return;
+  };

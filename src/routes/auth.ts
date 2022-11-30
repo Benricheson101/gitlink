@@ -3,12 +3,11 @@ import {FastifyInstance, FastifyPluginOptions} from 'fastify';
 import {
   DiscordRESTClient,
   GitHubRESTClient,
-  errorResponse,
   GitLinkMetadata,
+  errorResponse,
   getGitHubAuthURL,
   requireAuth,
 } from 'gitlink';
-
 import {GITHUB_SCOPES} from 'gitlink/constants';
 
 export const loadAuthRoutes = (
@@ -64,7 +63,7 @@ export const loadAuthRoutes = (
   server.get<{Querystring: {code: string; state: string}}>(
     '/github/callback',
     {
-      preHandler: [requireAuth],
+      preHandler: [requireAuth(true)],
       schema: {
         querystring: {
           type: 'object',

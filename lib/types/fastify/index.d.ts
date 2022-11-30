@@ -1,5 +1,3 @@
-import 'fastify';
-
 import {SessionData, SessionStore} from '../../struct/session';
 
 declare module 'fastify' {

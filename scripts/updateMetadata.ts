@@ -1,6 +1,5 @@
-import 'dotenv/config';
-
 import {ApplicationRoleConnectionMetadata} from 'discord-api-types/v10';
+import 'dotenv/config';
 import {fetch} from 'undici';
 
 import {ApplicationRoleConnectionMetadataType} from 'gitlink/constants';

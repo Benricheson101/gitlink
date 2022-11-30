@@ -1,10 +1,10 @@
 import {
-  APIUser as DiscordUser,
   ApplicationUserRoleConnection,
+  APIUser as DiscordUser,
 } from 'discord-api-types/v10';
 import {fetch} from 'undici';
 
-import {exchangeCode} from '../util/oauth';
+import {exchangeCode, refreshToken} from '../util/oauth';
 import {RESTError} from './error';
 import {SessionData} from './session';
 
@@ -104,8 +104,40 @@ export class DiscordRESTClient {
     return json;
   }
 
-  // TODO:
-  async refresh() {}
+  async refresh() {
+    const res = await refreshToken({
+      refreshToken: this.refreshToken,
+      clientID: DiscordRESTClient.clientID,
+      clientSecret: DiscordRESTClient.clientSecret,
+      endpoint: `${DiscordRESTClient.baseURL}/oauth2/token`,
+      redirectURI: DiscordRESTClient.redirectURI,
+    });
+
+    if (!res.ok) {
+      const data = await res.json();
+      throw new RESTError('POST', res.status, res.url, data);
+    }
+
+    const data = (await res.json()) as DiscordOAuthCodeExchangeResponse;
+    const at = res.headers.get('date') || new Date();
+    const date = new Date(at);
+
+    this.accessToken = data.access_token;
+    this.refreshToken = data.refresh_token;
+    this.scopes = data.scope.split(' ');
+    this.expiresAt = data.expires_in * 1000 + date.getTime();
+
+    return data;
+  }
+
+  toSessionData(): SessionData {
+    return {
+      accessToken: this.accessToken,
+      refreshToken: this.refreshToken,
+      scopes: this.scopes,
+      expiresAt: this.expiresAt,
+    };
+  }
 
   static async exchangeCode(code: string) {
     const res = await exchangeCode({
@@ -131,7 +163,7 @@ export class DiscordRESTClient {
       accessToken: data.access_token,
       refreshToken: data.refresh_token,
       scopes: data.scope.split(' '),
-      expiresAt: date.getTime() + data.expires_in,
+      expiresAt: date.getTime() + data.expires_in * 1000,
     });
   }
 }
