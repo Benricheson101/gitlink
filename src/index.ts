@@ -30,6 +30,13 @@ const main = async () => {
     reply.redirect(302, 'https://github.com/benricheson101/GitLink')
   );
 
+  server.get('/invite', (_, reply) =>
+    reply.redirect(
+      302,
+      `https://discord.com/api/oauth2/authorize?client_id=${process.env.DISCORD_CLIENT_ID}&permissions=268435456&scope=bot%20applications.commands`
+    )
+  );
+
   server.get('/login', (_, reply) =>
     reply.redirect(
       302,
